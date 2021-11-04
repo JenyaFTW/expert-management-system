@@ -9,6 +9,7 @@
     box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
     padding: 1em;"
 >
+    
 @startuml
     actor "Користувач" as User
     actor "Замовник" as Customer
@@ -39,6 +40,7 @@
     Analyst -u-|> User
     Expert -u-|> User
 @enduml
+    
 </center>
 
 <center style="
@@ -47,6 +49,7 @@
     box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
     padding: 1em;"
 >
+    
 @startuml
     actor "Користувач" as User
     actor "Аналітик" as Analyst
@@ -70,4 +73,5 @@
     UC_6 .d.> UC_1 : extends
     UC_7 .u.> UC_1 : extends
 @enduml
+    
 </center>
