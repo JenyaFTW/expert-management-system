@@ -3,6 +3,7 @@
 
 ## 2. Діаграма прецедентів
 
+### Відношення узагальнення
 <center style="
     border-radius:4px;
     border: 1px solid #cfd7e6;
@@ -43,13 +44,14 @@
     
 </center>
 
+### Структурування моделі варіантів використання Аналітика
 <center style="
     border-radius:4px;
     border: 1px solid #cfd7e6;
     box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
     padding: 1em;"
 >
-    
+ 
 @startuml
     actor "Користувач" as User
     actor "Аналітик" as Analyst
