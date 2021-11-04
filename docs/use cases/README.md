@@ -1,16 +1,7 @@
-# Модель прецедентів
+## 1. Вступ  
+Цей документ містить в собі опис основних сценаріїв роботи системи.
 
-В цьому файлі необхідно перелічити всі документи, розроблені в проекті та дати посилання на них.
-
-*Модель прецедентів повинна містити загальні оглядові діаграми та специфікації прецедентів.*
-
-
-
-Вбудовування зображень діаграм здійснюється з використанням сервісу [plantuml.com](https://plantuml.com/). 
-
-В markdown-файлі використовується опис діаграми
-
-```md
+## 2. Діаграма прецедентів
 
 <center style="
     border-radius:4px;
@@ -18,68 +9,37 @@
     box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
     padding: 1em;"
 >
-
 @startuml
+    actor "Користувач" as User
+    actor "Замовник" as Customer
+    actor "Аналітик" as Analyst
+    actor "Експерт" as Expert
+    
+    usecase "<b>UC_1</b>\nЗареєструватися у системі" as UC_1
+    usecase "<b>UC_2</b>\nАвторизуватися у системі" as UC_2
+    
+    usecase "<b>UC_3</b>\nПроходити опитування" as UC_3
+    usecase "<b>UC_4</b>\nУправляти списком опитувань" as UC_4
+    
+    usecase "<b>UC_5</b>\nЗамовляти опитування" as UC_5
+    usecase "<b>UC_6</b>\nПереглядати звітності опитування." as UC_6
+    
+    usecase "<b>UC_7</b>\nКерувати процесом опитування" as UC_7
 
-    right header
-        <font size=24 color=black>Package: <b>UCD_3.0
-    end header
+    User -u-> UC_1
+    User -u-> UC_2
+    
+    Expert -d-> UC_3
+    Expert -d-> UC_4
+    Customer -d-> UC_5
+    Customer -d-> UC_6
+    Analyst -d-> UC_7
 
-    title
-        <font size=18 color=black>UC_8. Редагувати конфігурацію порталу
-        <font size=16 color=black>Діаграма прецедентів
-    end title
-
-
-    actor "Користувач" as User #eeeeaa
-    
-    package UCD_1{
-        usecase "<b>UC_1</b>\nПереглянути список \nзвітів" as UC_1 #aaeeaa
-    }
-    
-    usecase "<b>UC_1.1</b>\nЗастосувати фільтр" as UC_1.1
-    usecase "<b>UC_1.2</b>\nПереглянути метадані \nзвіту" as UC_1.2  
-    usecase "<b>UC_1.2.1</b>\nДати оцінку звіту" as UC_1.2.1  
-    usecase "<b>UC_1.2.2</b>\nПереглянути інформацію \nпро авторів звіту" as UC_1.2.2
-    
-    package UCD_1 {
-        usecase "<b>UC_4</b>\nВикликати звіт" as UC_4 #aaeeaa
-    }
-    
-    usecase "<b>UC_1.1.1</b>\n Використати \nпошукові теги" as UC_1.1.1  
-    usecase "<b>UC_1.1.2</b>\n Використати \nрядок пошуку" as UC_1.1.2
-    usecase "<b>UC_1.1.3</b>\n Використати \nавторів" as UC_1.1.3  
-    
-    
-    
-    User -> UC_1
-    UC_1.1 .u.> UC_1 :extends
-    UC_1.2 .u.> UC_1 :extends
-    UC_4 .d.> UC_1.2 :extends
-    UC_1.2 .> UC_1.2 :extends
-    UC_1.2.1 .u.> UC_1.2 :extends
-    UC_1.2.2 .u.> UC_1.2 :extends
-    UC_1 ..> UC_1.2.2 :extends
-    
-    
-    UC_1.1.1 -u-|> UC_1.1
-    UC_1.1.2 -u-|> UC_1.1
-    UC_1.1.3 -u-|> UC_1.1
-    
-    right footer
-        Аналітичний портал. Модель прецедентів.
-        НТУУ КПІ ім.І.Сікорського
-        Киів-2020
-    end footer
-
+    Customer -u-|> User
+    Analyst -u-|> User
+    Expert -u-|> User
 @enduml
-
-**Діаграма прецедентів**
-
 </center>
-```
-
-яка буде відображена наступним чином
 
 <center style="
     border-radius:4px;
@@ -87,63 +47,27 @@
     box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
     padding: 1em;"
 >
-
 @startuml
-
-    right header
-        <font size=24 color=black>Package: <b>UCD_3.0
-    end header
-
-    title
-        <font size=18 color=black>UC_8. Редагувати конфігурацію порталу
-        <font size=16 color=black>Діаграма прецедентів
-    end title
-
-
-    actor "Користувач" as User #eeeeaa
+    actor "Користувач" as User
+    actor "Аналітик" as Analyst
     
-    package UCD_1{
-        usecase "<b>UC_1</b>\nПереглянути список \nзвітів" as UC_1 #aaeeaa
-    }
+    usecase "Керування процесом опитування" as UC_1
     
-    usecase "<b>UC_1.1</b>\nЗастосувати фільтр" as UC_1.1
-    usecase "<b>UC_1.2</b>\nПереглянути метадані \nзвіту" as UC_1.2  
-    usecase "<b>UC_1.2.1</b>\nДати оцінку звіту" as UC_1.2.1  
-    usecase "<b>UC_1.2.2</b>\nПереглянути інформацію \nпро авторів звіту" as UC_1.2.2
+    usecase "Створення опитування" as UC_2 #aaeeaa
+    usecase "Управління контентом\n опитування" as UC_3 #aaeeaa
+    usecase "Надсилання запрошення\n для участі в опитуванні" as UC_4 #aaeeaa
+    usecase "Аналіз результатів опитування" as UC_5 #aaeeaa
+    usecase "Управління експертним\n середовищем" as UC_6 #aaeeaa
+    usecase "Формування звітності\n для замовника" as UC_7 #aaeeaa
     
-    package UCD_1 {
-        usecase "<b>UC_4</b>\nВикликати звіт" as UC_4 #aaeeaa
-    }
+    User <|-d- Analyst
+    Analyst -d-> UC_1
     
-    usecase "<b>UC_1.1.1</b>\n Використати \nпошукові теги" as UC_1.1.1  
-    usecase "<b>UC_1.1.2</b>\n Використати \nрядок пошуку" as UC_1.1.2
-    usecase "<b>UC_1.1.3</b>\n Використати \nавторів" as UC_1.1.3  
-    
-    
-    
-    User -> UC_1
-    UC_1.1 .u.> UC_1 :extends
-    UC_1.2 .u.> UC_1 :extends
-    UC_4 .d.> UC_1.2 :extends
-    UC_1.2 .> UC_1.2 :extends
-    UC_1.2.1 .u.> UC_1.2 :extends
-    UC_1.2.2 .u.> UC_1.2 :extends
-    UC_1 ..> UC_1.2.2 :extends
-    
-    
-    UC_1.1.1 -u-|> UC_1.1
-    UC_1.1.2 -u-|> UC_1.1
-    UC_1.1.3 -u-|> UC_1.1
-    
-    right footer
-        Аналітичний портал. Модель прецедентів.
-        НТУУ КПІ ім.І.Сікорського
-        Киів-2020
-    end footer
-
+    UC_2 .d.> UC_1 : extends
+    UC_3 .u.> UC_1 : extends
+    UC_4 .d.> UC_1 : extends
+    UC_5 .u.> UC_1 : extends
+    UC_6 .d.> UC_1 : extends
+    UC_7 .u.> UC_1 : extends
 @enduml
-
-**Діаграма прецедентів**
-
 </center>
-
