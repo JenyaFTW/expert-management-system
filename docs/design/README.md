@@ -8,9 +8,18 @@
     box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
     padding: 1em;"
 >
-	
-@startuml
 
+@startuml
+    
+    entity Reports
+    entity Reports.id
+    entity Reports.text
+    entity Reports.date
+
+    Reports *-- Reports.id
+    Reports *-- Reports.text
+    Reports *-- Reports.date
+  
     entity Questions
     entity Questions.id
     entity Questions.text
@@ -32,7 +41,7 @@
     User *-- User.email
     User *-- User.password
     User *-- User.role
-
+            
 @enduml
 
 </center>
