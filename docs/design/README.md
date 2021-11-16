@@ -1,6 +1,6 @@
 # Проєктування бази даних
 
-## Модель бізнес-об'єктів 
+## Модель бізнес-об'єктів
 
 <center style="
     border-radius:4px;
@@ -10,17 +10,38 @@
 >
 
 @startuml
+    
+    entity Reports
+    entity Reports.id
+    entity Reports.text
+    entity Reports.date
 
- entity Reports
- entity Reports.id
- entity Reports.text
- entity Reports.date
-
- 
- Reports *-- Reports.id
- Reports *-- Reports.text
- Reports *-- Reports.date
+    Reports *-- Reports.id
+    Reports *-- Reports.text
+    Reports *-- Reports.date
   
+    entity Questions
+    entity Questions.id
+    entity Questions.text
+    entity Questions.type
+
+    Questions *-- Questions.id
+    Questions *-- Questions.text
+    Questions *-- Questions.type
+	
+    entity User
+    entity User.id
+    entity User.username
+    entity User.email
+    entity User.password
+    entity User.role
+ 
+    User *-- User.id
+    User *-- User.username
+    User *-- User.email
+    User *-- User.password
+    User *-- User.role
+            
 @enduml
 
 </center>
@@ -36,55 +57,55 @@
     
 @startuml
 
-	entity Users <<ENTITY>> {
-		id:INT
-		username:VARCHAR
-		email:VARCHAR
-		password:VARCHAR
-		role:VARCHAR
-	}
-	
-	entity Experts <<ENTITY>> {
-	    id:INT
-	    occupation:TEXT
-	}
-	
-	entity Reports <<ENTITY>> {
-	    id:INT
-	    text:VARCHAR
-	    date:DATETIME
-	}
-	
-	entity Surveys <<ENTITY>> {
-	    id:INT
-	    name:VARCHAR
-	    description:VARCHAR
-	    owner:INT
-	    open:DATETIME
-	    close:DATETIME
-	}
-	
-	entity Questions <<ENTITY>> {
-	    id:INT
-	    text:VARCHAR
-	    type:VARCHAR
-	}
+    entity Users <<ENTITY>> {
+    	id:INT
+    	username:VARCHAR
+    	email:VARCHAR
+    	password:VARCHAR
+    	role:VARCHAR
+    }
 
-	entity Responses <<ENTITY>> {
-	    id:INT
-	    text:VARCHAR
-	}
-	
-	Users "1,1" -- "0,1" Experts
-	Users "1,1" - "0,*" Reports
-	Users "1,1" -- "0,*" Surveys
-	Reports "0,*" -- "1,1" Surveys
-	Surveys "1,1" -- "0,*" Questions
-	Experts "1,1" -- "0,*" Responses
-	Responses "0,*" -- "1,1" Questions
-	
+    entity Experts <<ENTITY>> {
+        id:INT
+        occupation:TEXT
+    }
+
+    entity Reports <<ENTITY>> {
+        id:INT
+        text:VARCHAR
+        date:DATETIME
+    }
+
+    entity Surveys <<ENTITY>> {
+        id:INT
+        name:VARCHAR
+        description:VARCHAR
+        owner:INT
+        open:DATETIME
+        close:DATETIME
+    }
+
+    entity Questions <<ENTITY>> {
+        id:INT
+        text:VARCHAR
+        type:VARCHAR
+    }
+
+    entity Responses <<ENTITY>> {
+        id:INT
+        text:VARCHAR
+    }
+
+    Users "1,1" -- "0,1" Experts
+    Users "1,1" - "0,*" Reports
+    Users "1,1" -- "0,*" Surveys
+    Reports "0,*" -- "1,1" Surveys
+    Surveys "1,1" -- "0,*" Questions
+    Experts "1,1" -- "0,*" Responses
+    Responses "0,*" -- "1,1" Questions
+
 @enduml
-    
+
 </center>
 
 ## Реляційна схема
