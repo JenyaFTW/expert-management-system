@@ -10,24 +10,52 @@
 >
 
 @startuml
+  
+    entity Experts {}
+    entity Experts.id {}
+    entity Experts.ocupation {}
 
-entity Experts {}
-entity Experts.id {}
-entity Experts.ocupation {}
+    Experts *-- Experts.id
+    Experts *-- Experts.ocupation
 
-Experts _-- Experts.id
-Experts _-- Experts.ocupation
+    entity Responses {}
+    entity Responses.id {}
+    entity Responses.text {}
 
-@enduml
+    Responses *-- Responses.id
+    Responses *-- Responses.text
+  
+    entity Reports
+    entity Reports.id
+    entity Reports.text
+    entity Reports.date
 
-@startuml
+    Reports *-- Reports.id
+    Reports *-- Reports.text
+    Reports *-- Reports.date
+  
+    entity Questions
+    entity Questions.id
+    entity Questions.text
+    entity Questions.type
 
-entity Responses {}
-entity Responses.id {}
-entity Responses.text {}
-
-Responses _-- Responses.id
-Responses _-- Responses.text
+    Questions *-- Questions.id
+    Questions *-- Questions.text
+    Questions *-- Questions.type
+	
+    entity User
+    entity User.id
+    entity User.username
+    entity User.email
+    entity User.password
+    entity User.role
+ 
+    User *-- User.id
+    User *-- User.username
+    User *-- User.email
+    User *-- User.password
+    User *-- User.role
+            
 @enduml
 
 </center>
