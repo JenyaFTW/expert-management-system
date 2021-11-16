@@ -10,7 +10,21 @@
 >
 
 @startuml
-    
+  
+    entity Experts {}
+    entity Experts.id {}
+    entity Experts.ocupation {}
+
+    Experts *-- Experts.id
+    Experts *-- Experts.ocupation
+
+    entity Responses {}
+    entity Responses.id {}
+    entity Responses.text {}
+
+    Responses *-- Responses.id
+    Responses *-- Responses.text
+  
     entity Reports
     entity Reports.id
     entity Reports.text
