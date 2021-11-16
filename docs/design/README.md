@@ -20,12 +20,12 @@
     Questions *-- Questions.text
     Questions *-- Questions.type
 	
-    entity User {}
-    entity User.id {}
-    entity User.username {}
-    entity User.email {}
-    entity User.password {}
-    entity User.role {}
+    entity User
+    entity User.id
+    entity User.username
+    entity User.email
+    entity User.password
+    entity User.role
  
     User *-- User.id
     User *-- User.username
