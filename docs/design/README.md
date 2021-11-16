@@ -8,6 +8,7 @@
     box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
     padding: 1em;"
 >
+	
 @startuml
 
     entity Questions
@@ -15,37 +16,23 @@
     entity Questions.text
     entity Questions.type
 
-
     Questions *-- Questions.id
     Questions *-- Questions.text
     Questions *-- Questions.type
-
-@enduml
-
-</center>
-
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;"
->
 	
-@startuml
-
- entity User {}
- entity User.id {}
- entity User.username {}
- entity User.email {}
- entity User.password {}
- entity User.role {}
+    entity User {}
+    entity User.id {}
+    entity User.username {}
+    entity User.email {}
+    entity User.password {}
+    entity User.role {}
  
- User *-- User.id
- User *-- User.username
- User *-- User.email
- User *-- User.password
- User *-- User.role
-  
+    User *-- User.id
+    User *-- User.username
+    User *-- User.email
+    User *-- User.password
+    User *-- User.role
+
 @enduml
 
 </center>
