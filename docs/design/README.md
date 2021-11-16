@@ -31,6 +31,23 @@
     padding: 1em;"
 >
 	
+@startuml
+
+ entity User {}
+ entity User.id {}
+ entity User.username {}
+ entity User.email {}
+ entity User.password {}
+ entity User.role {}
+ 
+ User *-- User.id
+ User *-- User.username
+ User *-- User.email
+ User *-- User.password
+ User *-- User.role
+  
+@enduml
+
 </center>
 
 ## ER-модель
