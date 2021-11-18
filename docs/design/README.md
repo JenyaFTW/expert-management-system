@@ -147,5 +147,5 @@
 
 ## Реляційна схема
 
-![image](https://user-images.githubusercontent.com/24240873/141973425-906fc683-9255-4d95-be4f-03165bba5fc3.png)
+![image](https://user-images.githubusercontent.com/24240873/142406374-f1333510-c223-4473-9082-a0fedea918ff.png)
 
