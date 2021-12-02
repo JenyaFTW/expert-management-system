@@ -2,28 +2,33 @@ const { Model } = require("sequelize/dist");
 const db = require('../lib/db');
 const { Sequelize, DataTypes } = require('sequelize');
 
-class User extends Model {};
+class Response extends Model {};
 
-User.init({
+Response.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    role: {
+    text: DataTypes.STRING,
+    question: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'roles',
+            model: 'questions',
+            key: 'id'
+        }
+    },
+    expert: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'experts',
             key: 'id'
         }
     }
 }, {
     sequelize: db,
-    modelName: 'user',
+    modelName: 'response',
     timestamps: false
 });
 
-module.exports = User;
+module.exports = Response;
