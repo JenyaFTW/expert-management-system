@@ -2,9 +2,9 @@ const { Model } = require('sequelize/dist');
 const db = require('../lib/db');
 const { Sequelize, DataTypes } = require('sequelize');
 
-class Survey extends Model {}
+class Question extends Model {}
 
-Survey.init(
+Question.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,9 +23,9 @@ Survey.init(
   },
   {
     sequelize: db,
-    modelName: 'survey',
+    modelName: 'question',
     timestamps: false,
   }
 );
 
-module.exports = Survey;
+module.exports = Question;
