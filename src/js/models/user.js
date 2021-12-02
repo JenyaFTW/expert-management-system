@@ -16,7 +16,7 @@ User.init({
     role: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'users',
+            model: 'roles',
             key: 'id'
         }
     }

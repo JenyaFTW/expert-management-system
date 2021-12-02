@@ -1,32 +1,18 @@
 const dotenv = require('dotenv');
 const { User, Role, Survey, Expert, Question, Response } = require('./models');
-const db = require('./lib/db');
+const server = require('./lib/server');
 
-dotenv.config(); // Load .env
+dotenv.config();
 
 (async () => {
   try {
-    await User.sync();
-    await Role.sync();
-    await Survey.sync();
-    await Expert.sync();
-    await Question.sync();
-    await Response.sync();
-
-    const analystRole = await Role.create({ name: 'analyst' });
-    const expertRole = await Role.create({ name: 'expert' });
-
-    const user = await User.create({
-      username: 'User',
-      email: 'email@email.com',
-      password: 'password',
-      role: 1,
+    [User, Role, Survey, Expert, Question, Response].forEach(async model => await model.sync());
+    
+    const EXPRESS_PORT = process.env.EXPRESS_PORT || 8080;
+    server.listen(EXPRESS_PORT, () => {
+      console.log(`Server listening on http://localhost:${EXPRESS_PORT}`);
     });
-
-    console.log(user);
-
-    await db.drop();
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    throw error;
   }
 })();
