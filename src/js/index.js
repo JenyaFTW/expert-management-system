@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-const { User, Role } = require('./models');
+const { User, Role, Expert } = require('./models');
 const { sequelize } = require('./models/user');
 
 dotenv.config(); // Load .env
@@ -8,6 +8,7 @@ dotenv.config(); // Load .env
     try {
         await User.sync();
         await Role.sync();
+        await Expert.sync();
 
         const analystRole = await Role.create({ name: 'analyst' });
         const expertRole = await Role.create({ name: 'expert' });
