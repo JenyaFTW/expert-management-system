@@ -21,9 +21,9 @@ app.post('/login', async (req, res) => {
     if (user) {
         return res.json({ 'message': 'Successfully logged in.' });
         // JWT token stuff
-    } else {
-        return res.json({ 'message': 'Invalid username/password.' });
     }
+    
+    return res.json({ 'message': 'Invalid username/password.' });
 });
 
 app.post('/signup', async (req, res) => {
@@ -40,9 +40,9 @@ app.post('/signup', async (req, res) => {
 
     if (user) {
         return res.json({ 'message': 'Successfully registered user.' });
-    } else {
-        return res.json({ 'message': 'Failed to register user.' });
     }
+
+    return res.json({ 'message': 'Failed to register user.' });
 });
 
 app.get('/surveys', async (req, res) => {
@@ -50,6 +50,21 @@ app.get('/surveys', async (req, res) => {
 
     const surveys = await models.Survey.findAll();
     return res.json(surveys);
+});
+
+app.post('/surveys', async (req, res) => {
+    // Check if authenticated
+
+    const { user } = 0; // ID of authenticated user
+    const { name, description, open, close } = req.data;
+
+    const survey = await models.Survey.create({ name, description, open, close, user });
+
+    if (survey) {
+        return res.json(survey);
+    }
+
+    return res.json({ 'message': 'Failed to create survey.' });
 });
 
 app.get('/surveys/:id', async (req, res) => {
@@ -60,9 +75,9 @@ app.get('/surveys/:id', async (req, res) => {
     
     if (survey) {
         return res.json(survey);
-    } else {
-        return res.status(404).json({ 'message': 'Survey not found' });
     }
+    
+    return res.status(404).json({ 'message': 'Survey not found' });
 });
 
 app.delete('/surveys/:id', async (req, res) => {
@@ -73,9 +88,9 @@ app.delete('/surveys/:id', async (req, res) => {
     
     if (await survey.destroy()) {
         return res.json({ 'message': 'Successfully deleted survey' });
-    } else {
-        return res.status(404).json({ 'message': 'Problem with deleting survey' });
     }
+
+    return res.status(404).json({ 'message': 'Problem with deleting survey' });
 });
 
 app.get('/surveys/:id/responses', async (req, res) => {
@@ -86,9 +101,57 @@ app.get('/surveys/:id/responses', async (req, res) => {
 
     if (responses) {
         return res.json(responses);
-    } else {
-        return res.status(404).json({ 'message': 'Survey/responses not found' });
     }
+
+    return res.status(404).json({ 'message': 'Survey/responses not found' });
+});
+
+app.get('/reports', async (req, res) => {
+    // Check if authenticated
+
+    const reports = await models.Report.findAll();
+
+    if (reports) {
+        return res.json(reports);
+    }
+    
+    returnres.json({ 'message': 'Failed to find reports' });
+});
+
+app.post('/surveys/:id/reports', async (req, res) => {
+    // Check if authenticated
+
+    const id = req.params.id;
+    const { text, date } = req.data;
+
+    const user = 0; // Authenticated user ID
+
+    const report = await models.Report.create({
+        text,
+        date,
+        survey: id,
+        user
+    });
+
+    if (report) {
+        return res.json(report);
+    }
+
+    return res.json({ 'message': 'Failed to create report' });
+});
+
+app.delete('/surveys/:sid/reports/:id', async (req, res) => {
+    const { id, sid } = req.params;
+    const report = await models.Report.findOne({
+        survey: sid,
+        id
+    });
+
+    if (await report.destroy()) {
+        return res.json({ 'message': 'Successfully deleted report' });
+    }
+
+    return res.status(404).json({ 'message': 'Problem with deleting report' });
 });
 
 module.exports = app;
