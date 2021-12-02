@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
-const { User, Role, Survey } = require('./models');
-const { sequelize } = require('./models/user');
+const { User, Role, Survey, Expert } = require('./models');
+const db = require('./lib/db');
 
 dotenv.config(); // Load .env
 
@@ -9,6 +9,7 @@ dotenv.config(); // Load .env
     await User.sync();
     await Role.sync();
     await Survey.sync();
+    await Expert.sync();
 
     const analystRole = await Role.create({ name: 'analyst' });
     const expertRole = await Role.create({ name: 'expert' });
@@ -22,7 +23,7 @@ dotenv.config(); // Load .env
 
     console.log(user);
 
-    await sequelize.drop();
+    await db.drop();
   } catch (e) {
     console.log(e);
   }
