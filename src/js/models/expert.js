@@ -2,19 +2,26 @@ const { Model } = require("sequelize/dist");
 const db = require('../lib/db');
 const { Sequelize, DataTypes } = require('sequelize');
 
-class Role extends Model {};
+class Expert extends Model {};
 
-Role.init({
+Expert.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    name: DataTypes.STRING
+    occupation: DataTypes.STRING,
+    user: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'users',
+            key: 'id'
+        }
+    }
 }, {
     sequelize: db,
-    modelName: 'role',
+    modelName: 'expert',
     timestamps: false
 });
 
-module.exports = Role;
+module.exports = Expert;
