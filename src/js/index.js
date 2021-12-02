@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-const { User, Role, Survey, Expert } = require('./models');
+const { User, Role, Survey, Expert, Question } = require('./models');
 const db = require('./lib/db');
 
 dotenv.config(); // Load .env
@@ -10,6 +10,7 @@ dotenv.config(); // Load .env
     await Role.sync();
     await Survey.sync();
     await Expert.sync();
+    await Question.sync();
 
     const analystRole = await Role.create({ name: 'analyst' });
     const expertRole = await Role.create({ name: 'expert' });
