@@ -1,6 +1,8 @@
 'use strict';
 
-exports.authLogin = () => {
+const models = require('../models');
+
+exports.authLogin = async (req, res) => {
     const { username, password } = req.body;
 
     // Input validation in future
@@ -18,7 +20,7 @@ exports.authLogin = () => {
     return res.json({ 'message': 'Invalid username/password.' });
 }
 
-exports.authSignup = () => {
+exports.authSignup = async (req, res) => {
     const { email, username, password } = req.body;
 
     // Input validation in future

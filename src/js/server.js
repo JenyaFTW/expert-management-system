@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 
+const homeRouter = require('./routes/home');
 const authRouter = require('./routes/auth');
 const surveysRouter = require('./routes/surveys');
 
