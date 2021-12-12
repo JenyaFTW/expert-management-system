@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const models = require('./models');
 
+const authRouter = require('./routes/auth');
 const surveysRouter = require('./routes/surveys');
 
 app.use(express.json());
@@ -10,42 +11,42 @@ app.get('/', async (req, res) => {
     res.send('Foxpoll API v1');
 });
 
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+// app.post('/login', async (req, res) => {
+//     const { username, password } = req.body;
 
-    // Input validation in future
+//     // Input validation in future
 
-    const user = await models.User.findOne({
-        username,
-        password
-    });
+//     const user = await models.User.findOne({
+//         username,
+//         password
+//     });
 
-    if (user) {
-        return res.json({ 'message': 'Successfully logged in.' });
-        // JWT token stuff
-    }
+//     if (user) {
+//         return res.json({ 'message': 'Successfully logged in.' });
+//         // JWT token stuff
+//     }
     
-    return res.json({ 'message': 'Invalid username/password.' });
-});
+//     return res.json({ 'message': 'Invalid username/password.' });
+// });
 
-app.post('/signup', async (req, res) => {
-    const { email, username, password } = req.body;
+// app.post('/signup', async (req, res) => {
+//     const { email, username, password } = req.body;
 
-    // Input validation in future
+//     // Input validation in future
 
-    const user = await models.User.create({
-        email,
-        username,
-        password,
-        role: 1
-    });
+//     const user = await models.User.create({
+//         email,
+//         username,
+//         password,
+//         role: 1
+//     });
 
-    if (user) {
-        return res.json({ 'message': 'Successfully registered user.' });
-    }
+//     if (user) {
+//         return res.json({ 'message': 'Successfully registered user.' });
+//     }
 
-    return res.json({ 'message': 'Failed to register user.' });
-});
+//     return res.json({ 'message': 'Failed to register user.' });
+// });
 
 // app.get('/surveys', async (req, res) => {
 //     // Check if authenticated
@@ -156,6 +157,7 @@ app.get('/reports', async (req, res) => {
 //     return res.status(404).json({ 'message': 'Problem with deleting report' });
 // });
 
+app.use('/auth', authRouter);
 app.use('/surveys', surveysRouter);
 
 module.exports = app;
