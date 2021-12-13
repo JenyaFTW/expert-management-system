@@ -3,7 +3,7 @@
 const models = require('../models');
 
 // GET
-exports.homeGreting = async (req, res) => {
+exports.homeGreeting = async (req, res) => {
     res.send('Foxpoll API v1');
 }
 
@@ -14,5 +14,5 @@ exports.getAllReports = async (req, res) => {
     const reports = await models.Report.findAll();
 
     if (reports) return res.json(reports);
-    returnres.json({ 'message': 'Failed to find reports' });
+    return res.json({ 'message': 'Failed to find reports' });
 }

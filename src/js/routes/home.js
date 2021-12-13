@@ -12,7 +12,7 @@ const homeRouter = express.Router();
  */
 
 homeRouter.route('/')
-    .post(homeController.homeGreeting);
+    .get(homeController.homeGreeting);
 
 homeRouter.route('/reports')
     .get(homeController.getAllReports)
