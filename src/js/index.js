@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 const { User, Role, Survey, Expert, Question, Response, Report } = require('./models');
-const server = require('./lib/server');
+const server = require('./server');
 
 dotenv.config();
 

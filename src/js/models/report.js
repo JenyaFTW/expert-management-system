@@ -1,5 +1,5 @@
 const { Model } = require("sequelize/dist");
-const db = require('../lib/db');
+const db = require('../db');
 const { Sequelize, DataTypes } = require('sequelize');
 
 class Report extends Model {};
