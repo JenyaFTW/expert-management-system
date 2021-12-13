@@ -11,7 +11,7 @@ const authRouter = express.Router();
  * 
  */
 
- authRouter.route('/login')
+authRouter.route('/login')
     .post(authController.authLogin);
 
 authRouter.route('/signup')
